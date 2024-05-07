@@ -20,8 +20,7 @@ lang ??= 'en';
 			<header class="header">
 				<nav class="nav twoCol">
 					<div class="logo">
-						<a href="/" class="align-end">
-							<div class="cross"></div>
+						<a href="/">
 							<h1>Slava Zakharov</h1>
 						</a>
 						<span class="tx-grey">Civil Software Engineer</span>
@@ -116,30 +115,4 @@ lang ??= 'en';
 		gap: 1rem;
 		grid-auto-flow: column;
 	}
-
-	.cross {	  
-		--b: 8px; /* the thickness */
-		
-		aspect-ratio: 1;
-		background:
-			conic-gradient(from 90deg at var(--b) var(--b),#fff 90deg, #000 0) 
-			calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
-			calc(50%  + var(--b))   calc(50%  + var(--b));
-		border: 0.5px solid #fff; /* the outer space */
-		outline: 0.5px solid #000; /* the outer space */
-		margin-inline-end: 0.5rem;
-		width: 20px; /* the size */
-		/* transform: scale(0.9); */
-		vertical-align: revert;
-	}
-
-	.logo > * {
-		display: block;
-	}
-
-	a[href="/"] > * {
-		display: inline-block;
-		line-height: 1;
-	}
-
 </style>
