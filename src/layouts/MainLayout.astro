@@ -1,0 +1,145 @@
+---
+import Disclaimer from "../components/Disclaimer.astro";
+import "../styles/main.css";
+
+let {title, lang} = Astro.props;
+lang ??= 'en';
+---
+
+<html {lang}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/ico" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Disclaimer {lang} />
+		<main class="column">
+			<header class="header">
+				<nav class="nav twoCol">
+					<div class="logo">
+						<a href="/" class="align-end">
+							<div class="cross"></div>
+							<h1>Slava Zakharov</h1>
+						</a>
+						<span class="tx-grey">Civil Software Engineer</span>
+					</div>
+					<div class="spaceBetween align-end">
+						<ul class="navigation" role="list">
+							<li><a href="/" role="menuitem">Home</a></li>
+							<li><a href="/blog" role="menuitem">Articles</a></li>
+							<li><a href="#projects" role="menuitem">Projects</a></li>
+							<li><a href="/uses" role="menuitem">Uses</a></li>
+							<li><a href="/about" role="menuitem">About</a></li>
+						</ul>
+						<div>
+							
+							<a href="mailto:me@slav.no" title="Email Me">me@slav.no</a>
+						</div>
+					</div>
+				</nav>
+			</header>
+			<div class="main">
+				<slot></slot>
+			</div>
+			<footer class="footer twoCol">
+				<div class="leftCol">
+					Keep it up <span class="narrow">© 23.03.2000-present</span>
+				</div>
+				<div class="rightCol spaceBetween">
+					<ul role="list" class="socials">
+						<li><a href="https://twitter.com/petyapetr_812" role="link">Twitter</a></li>
+						<li><a href="https://github.com/petyapetr" role="link">Github</a></li>
+						<li><a href="mailto:me@slav.no" role="link">Email</a></li>
+					</ul>
+					<div>Updated: <span class="narrow">May 7, 2024</span></div>
+				</div>
+			</footer>
+		</main>
+	</body>
+</html>
+
+<style>
+	.column {
+		margin-inline: 1.125rem;
+	}
+
+	.header {
+		position: relative;
+		/* width: calc(100% - 2.25rem); */
+		background-color: hsl(var(--color-white));
+	}
+
+	@media (min-width: 60rem) {
+		.header {
+			position: sticky;
+			top: 0;
+    	z-index: 1;
+		}
+
+		.main {
+			padding-block-start: 1rem;
+		}
+	}
+	
+	.nav {
+		padding-block: 1.125rem;
+	}
+	
+	.header * {
+		font-size: inherit;
+		line-height: 1.25;
+	}
+	
+	.header a:not([role="menuitem"]) {
+		font-weight: 700;
+	}
+	
+	.spaceBetween {
+		display: block grid;
+		grid-auto-flow: column;
+		justify-content: space-between;
+	}
+
+	.header {
+		border-block-end: solid 0.125rem hsl(var(--color-light-grey));
+	}
+
+	.footer {
+		padding-block: 1rem;
+	}
+
+	ul[class] {
+		display: block grid;
+		gap: 1rem;
+		grid-auto-flow: column;
+	}
+
+	.cross {	  
+		--b: 8px; /* the thickness */
+		
+		aspect-ratio: 1;
+		background:
+			conic-gradient(from 90deg at var(--b) var(--b),#fff 90deg, #000 0) 
+			calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+			calc(50%  + var(--b))   calc(50%  + var(--b));
+		border: 0.5px solid #fff; /* the outer space */
+		outline: 0.5px solid #000; /* the outer space */
+		margin-inline-end: 0.5rem;
+		width: 20px; /* the size */
+		/* transform: scale(0.9); */
+		vertical-align: revert;
+	}
+
+	.logo > * {
+		display: block;
+	}
+
+	a[href="/"] > * {
+		display: inline-block;
+		line-height: 1;
+	}
+
+</style>
