@@ -16,26 +16,27 @@ lang ??= 'en';
 	</head>
 	<body>
 		<Disclaimer {lang} />
-		<main class="column">
-			<header class="header">
+		<main class="wrapper">
+			<header class="header bg-base">
 				<nav class="nav twoCol">
 					<div class="logo">
-						<a href="/">
+						<a class="button" href="/">
 							<h1>Slava Zakharov</h1>
 						</a>
-						<span class="tx-grey">Civil Software Engineer</span>
+						<span class="text-secondary">Civil Software Engineer</span>
 					</div>
-					<div class="spaceBetween align-end">
-						<ul class="navigation" role="list">
-							<li><a href="/" role="menuitem">Home</a></li>
-							<li><a href="/blog" role="menuitem">Articles</a></li>
-							<li><a href="#projects" role="menuitem">Projects</a></li>
-							<li><a href="/uses" role="menuitem">Uses</a></li>
-							<li><a href="/about" role="menuitem">About</a></li>
+
+					<div class="col space-between align-end" data-screen="desktop">
+						<ul class="menu text-secondary" role="list">
+							<li><a class="menu__item" href="/">Home</a></li>
+							<li><a class="menu__item" href="/blog">Articles</a></li>
+							<li><a class="menu__item" href="#projects">Projects</a></li>
+							<li><a class="menu__item" href="/uses">Uses</a></li>
+							<li><a class="menu__item" href="/about">About</a></li>
 						</ul>
 						<div>
 							
-							<a href="mailto:me@slav.no" title="Email Me">me@slav.no</a>
+							<a class="button" href="mailto:me@slav.no" title="Email Me" role="button">me@slav.no</a>
 						</div>
 					</div>
 				</nav>
@@ -43,17 +44,17 @@ lang ??= 'en';
 			<div class="main">
 				<slot></slot>
 			</div>
-			<footer class="footer twoCol">
-				<div class="leftCol">
-					Keep it up <span class="narrow">© 23.03.2000-present</span>
+			<footer class="footer twoCol" data-state="reversed">
+				<div class="memo">
+					Keep it up <span class="text-narrow">© 23.03.2000-present</span>
 				</div>
-				<div class="rightCol spaceBetween">
-					<ul role="list" class="socials">
-						<li><a href="https://twitter.com/petyapetr_812" role="link">Twitter</a></li>
-						<li><a href="https://github.com/petyapetr" role="link">Github</a></li>
-						<li><a href="mailto:me@slav.no" role="link">Email</a></li>
+				<div class="space-between">
+					<ul class="socials text-secondary" role="list">
+						<li><a class="footer__item" href="https://twitter.com/petyapetr_812" role="link">Twitter</a></li>
+						<li><a class="footer__item" href="https://github.com/petyapetr" role="link">Github</a></li>
+						<li><a class="footer__item" href="mailto:me@slav.no" role="link">Email</a></li>
 					</ul>
-					<div>Updated: <span class="narrow">May 7, 2024</span></div>
+					<div class="update" data-screen="desktop">Updated: <span class="text-narrow">May 7, 2024</span></div>
 				</div>
 			</footer>
 		</main>
@@ -61,58 +62,50 @@ lang ??= 'en';
 </html>
 
 <style>
-	.column {
-		margin-inline: 1.125rem;
+	/* General */
+	
+	h1 {
+		font-size: inherit;
 	}
 
+	/* Composition */
+	
 	.header {
 		position: relative;
-		/* width: calc(100% - 2.25rem); */
-		background-color: hsl(var(--color-white));
-	}
-
-	@media (min-width: 60rem) {
-		.header {
-			position: sticky;
-			top: 0;
-    	z-index: 1;
-		}
-
-		.main {
-			padding-block-start: 1rem;
-		}
 	}
 	
-	.nav {
-		padding-block: 1.125rem;
-	}
-	
-	.header * {
-		font-size: inherit;
-		line-height: 1.25;
-	}
-	
-	.header a:not([role="menuitem"]) {
+	.header {
 		font-weight: 700;
 	}
 	
-	.spaceBetween {
-		display: block grid;
-		grid-auto-flow: column;
-		justify-content: space-between;
+	.header, .footer {
+		line-height: 1.1;
+		padding-block: 1.125rem;
+	}
+	
+	.menu__item {
+		font-weight: 400;
 	}
 
 	.header {
-		border-block-end: solid 0.125rem hsl(var(--color-light-grey));
-	}
-
-	.footer {
-		padding-block: 1rem;
+		border-block-end: solid 1.1px var(--clr-neutral-400);
 	}
 
 	ul[class] {
 		display: block grid;
 		gap: 1rem;
 		grid-auto-flow: column;
+	}
+
+	@media (min-width: 60rem) {
+		.header {
+    	position: sticky;
+    	top: 0;
+    	z-index: 1;
+  	}
+		
+		.main {
+			padding-block-start: 1.625rem;
+		}
 	}
 </style>

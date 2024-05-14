@@ -7,19 +7,17 @@ if (lang === "ru") {
 }
 ---
 
-<p class="msg">{message}!</p>
+<p class="msg text-extended">{message}!</p>
 
 <style>
 	.msg {
-		background-color: hsl(var(--color-ebony));
-		color: hsl(var(--color-white));
+		background-color: var(--clr-neutral-900);
+		color: var(--clr-neutral-100);
 		display: block grid;
-		font-family: system-ui;
-		font-stretch: extra-expanded;
-		font-size: 1rem;
-		font-weight: 700;
-		place-content: center;
+		font-size: var(--fs-m);
+		font-weight: 900;
 		line-height: 1;
-		padding-block: 0.75rem;;
+		padding-block: 0.75rem;
+		place-content: center;
 	}
 </style>
