@@ -2,6 +2,45 @@
 import MainLayout from "../layouts/MainLayout.astro"
 ---
 
-<MainLayout title="about" lang="ru">
-	<h2>Components are cool!</h2>
+<MainLayout title="About — Slava Zakharov" lang="ru">
+	<p>
+		Born and raised in Saint-Petersburg, I'm currently based in Yerevan. Developing GIS software by day, exploring IndieWeb by night.
+	</p>
+	<div class="align-end">
+		<figure class="img">
+			<img class="intro__img" src="/head-shot.jpg" alt="head shot of me">
+			<figcaption class="img__caption" data-screen="desktop">
+				While afk I enjoy <a href="/running">running</a>, <a href="/books">reading</a>, <a href="/blog">digital gardening</a>, playing chess and recording <a href="/podcasts">podcasts</a>.
+			</figcaption>
+		</figure>
+	</div>
+	<div>
+		<a class="button" href="mailto:me@slav.no" title="Email Me" role="button">me@slav.no</a>
+	</div>
 </MainLayout>
+
+<style>
+	.intro__who {
+		font-size: min(max(1.5rem, 3vw), 3rem);
+		font-weight: 700;
+		line-height: 1.1;
+		overflow-wrap: break-word;
+		text-wrap: balance;
+	}
+
+	.intro__who + p {
+		--flow-space: 2rem;
+	}
+
+	.img {
+		--max: 400px;
+	}
+
+	.intro__img {
+		width: clamp(300px, 70%, var(--max));	
+	}
+
+	.intro {
+		row-gap: 2rem
+	}
+</style>

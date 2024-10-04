@@ -1,0 +1,22 @@
+@media (min-width: 60rem) {
+	.wrapper {
+		--gutter: var(--space-xl);
+	}
+
+	.inner-wrapper {
+		--gutter: var(--space-m);
+	}
+}
+
+.main .switcher {
+	--gutter: var(--space-xl)
+}
+
+
+.main > * + *, .footer {
+	border-block-start: var(--stroke);
+}
+
+.header {
+	border-block-end: var(--stroke);
+}

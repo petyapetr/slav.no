@@ -1,9 +1,14 @@
 ---
 import Disclaimer from "../components/Disclaimer.astro";
-import "../styles/main.css";
+// import "../styles/main.css";
+import "../styles/reset.css";
+import "../styles/global.css";
+import "../styles/composition.css";
+import "../styles/utility.css";
+import "../styles/block.css";
 
-let {title, lang} = Astro.props;
-lang ??= 'en';
+const {title, locale} = Astro.props;
+const lang = locale ? locale : "en";
 ---
 
 <html {lang}>
@@ -15,97 +20,90 @@ lang ??= 'en';
 		<title>{title}</title>
 	</head>
 	<body>
-		<Disclaimer {lang} />
-		<main class="wrapper">
-			<header class="header bg-base">
-				<nav class="nav twoCol">
-					<div class="logo">
-						<a class="button" href="/">
-							<h1>Slava Zakharov</h1>
-						</a>
-						<span class="text-secondary">Civil Software Engineer</span>
-					</div>
-
-					<div class="col space-between align-end" data-screen="desktop">
-						<ul class="menu text-secondary" role="list">
-							<li><a class="menu__item" href="/">Home</a></li>
-							<li><a class="menu__item" href="/blog">Articles</a></li>
-							<li><a class="menu__item" href="#projects">Projects</a></li>
-							<li><a class="menu__item" href="/uses">Uses</a></li>
-							<li><a class="menu__item" href="/about">About</a></li>
-						</ul>
-						<div>
-							
-							<a class="button" href="mailto:me@slav.no" title="Email Me" role="button">me@slav.no</a>
+		<div class="page-wrapper">
+			<Disclaimer {lang} />
+			<main class="main-layout | wrapper">
+				<header class="header | inner-wrapper">
+					<nav class="nav | repel">
+						<div class="logo">
+							<a href="/">
+								Slava Zakharov
+							</a>
 						</div>
-					</div>
-				</nav>
-			</header>
-			<div class="main">
-				<slot></slot>
-			</div>
-			<footer class="footer twoCol" data-state="reversed">
-				<div class="memo">
-					Keep it up <span class="text-narrow">© 23.03.2000-present</span>
+
+						<ul class="menu | auto-columns | text-secondary" role="list">
+							<li><a class="menu__item" href="/">home</a></li>
+							<li><a class="menu__item" href="/about">about</a></li>
+							<li><a class="menu__item" href="/writing">writing</a></li>
+						</ul>
+					</nav>
+				</header>
+
+				<div class="main">
+					<slot></slot>
 				</div>
-				<div class="space-between">
-					<ul class="socials text-secondary" role="list">
+
+				<footer class="footer | repel | inner-wrapper" data-state="reversed">
+					<div class="memo">
+						Keep it up <span class="text-narrow">© 23.03.2000-present</span>
+					</div>
+					<ul class="socials | auto-columns | text-secondary" role="list">
 						<li><a class="footer__item" href="https://twitter.com/petyapetr_812" role="link">Twitter</a></li>
 						<li><a class="footer__item" href="https://github.com/petyapetr" role="link">Github</a></li>
 						<li><a class="footer__item" href="mailto:me@slav.no" role="link">Email</a></li>
 					</ul>
-					<div class="update" data-screen="desktop">Updated: <span class="text-narrow">May 7, 2024</span></div>
-				</div>
-			</footer>
-		</main>
+					<div class="update" data-screen="desktop">Updated: <span class="text-narrow">October 5, 2024</span></div>
+				</footer>
+			</main>
+		</div>
 	</body>
 </html>
 
 <style>
-	/* General */
-	
-	h1 {
-		font-size: inherit;
+	.main-layout {
+		display: grid;
+		grid-template-rows: max-content 1fr max-content;
 	}
 
-	/* Composition */
-	
-	.header {
-		position: relative;
-	}
-	
-	.header {
-		font-weight: 700;
+	.header, .footer {
+		font-family: var(--font-display);
 	}
 	
 	.header, .footer {
 		line-height: 1.1;
 		padding-block: 1.125rem;
 	}
-	
-	.menu__item {
-		font-weight: 400;
+
+	.nav {
+		font-size: var(--size-step-1)
 	}
 
-	.header {
-		border-block-end: solid 1.1px var(--clr-neutral-400);
+	.logo {
+		font-weight: 700;
 	}
 
-	ul[class] {
-		display: block grid;
-		gap: 1rem;
-		grid-auto-flow: column;
+	.logo a {
+		text-decoration: none;
 	}
 
 	@media (min-width: 60rem) {
 		.header {
+			background: var(--clr-global-bg);
     	position: sticky;
     	top: 0;
     	z-index: 1;
   	}
-		
-		.main {
-			padding-block-start: 1.625rem;
-		}
+	}
+	
+	.page-wrapper:has(> :nth-child(2)) {
+		--banner-count: 1;
+
+		display: grid;
+		grid-template-rows: repeat(var(--banner-count), minmax(min-content, max-content)) 1fr;
+		min-height: 100dvh;
+	}
+
+	.page-wrapper:has(> :nth-child(3)) {
+		--banner-count: 2;
 	}
 </style>

@@ -1,66 +1,137 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro"
+import MainLayout from "../layouts/MainLayout.astro";
+
+const data = [
+	{
+		title: 'UI Hell',
+		date: '2024-09-13',
+		href: '/'
+	},
+	{
+		title: 'Roman Empire',
+		date: '2024-07-12',
+		href: '/'
+	},
+	{
+		title: 'JS in Production',
+		date: '2024-05-03',
+		href: '/'
+	},
+	{
+		title: 'Story of OJ',
+		date: '2023-03-23',
+		href: '/'
+	},
+];
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+const posts = data.map((post) => {
+	const time = new Date(post.date);
+	const month = months[time.getMonth()];
+	const date = time.getDate();
+	const year = time.getFullYear();
+	post.date = `${month} ${date}, ${year}`
+
+	return post;
+});
 ---
 
 <MainLayout title="Slava Zakharov">
-	<div class="intro twoCol flow-block" data-state="reversed">
-		<div class="flow">
-			<p class="intro__who">
-				A web developer — providing professionals with trustworthy and easy-to use tools.
-			</p>
-			<p>
-				Born and raised in Saint-Petersburg, I'm currently based in Yerevan. Developing GIS software by day, exploring IndieWeb by night.
-			</p>
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates ex eos fugit mollitia exercitationem nostrum repudiandae cum perspiciatis accusantium eveniet! Rerum saepe ex eveniet quos error voluptatibus laborum itaque est!
-			</p>
+	<div class="intro | flow | inner-wrapper">
+		<h1 class="intro__main">I <span class="highlight">build</span> things in the internet and <span class="highlight">learn</span> along the way.</h1>
+		<p class="intro__desc">Hi, my name is Slava. I'm a developer in love with the web, different tools, outdoors, and writting.</p>
+		<p class="intro__desc">I'm constantly looking for ways to simplify everything around.</p>
+	</div>
+
+	<div class="content | switcher">
+		<section class="inner-wrapper">
+			<header class="caption">
+				<h2 class="caption__title">
+					Latest writing
+				</h2>
+			</header>
+			<ul class="post__list flow" role="list">
+				{posts.map(post => (
+					<li class="post">
+						<h3 class="post__title">
+							<a class="post__link" href={post.href}>{post.title}</a>
+						</h3>
+						<p class="post__date text-narrow">{post.date}</p>
+					</li>
+				))}
+			</ul>
+			<footer class="text-secondary">
+				<a href="/writing">All writting →</a>
+			</footer>
+		</section>
+		<div class="inner-wrapper">
+			<div class="cta | switcher">
+				<h2>Would like to work with me?</h2>
+				<a href="mailto:me@slav.no" title="Email Me" role="button">Email Me</a>
+			</div>
 		</div>
-
-		<div class="align-end">
-			<figure class="img">
-				<img class="intro__img" src="/head-shot.jpg" alt="head shot of me">
-				<figcaption class="img__caption" data-screen="desktop">
-					While afk I enjoy <a href="/running">running</a>, <a href="/books">reading</a>, <a href="/blog">digital gardening</a>, playing chess and recording <a href="/podcasts">podcasts</a>.
-				</figcaption>
-			</figure>
-		</div>
-	</div>
-
-	<div class="flow-block" id="articles">
-		<h2>Articles</h2>
-	</div>
-
-	<div class="flow-block" id="projects">
-		<h2>Projects</h2>
-	</div>
-
-	<div class="flow-block" id="reading">
-		<h2>Reading</h2>
 	</div>
 </MainLayout>
 
 <style>
-	.intro__who {
-		font-size: min(max(1.5rem, 3vw), 3rem);
-		font-weight: 700;
-		line-height: 1.1;
-		overflow-wrap: break-word;
-		text-wrap: balance;
-	}
-
-	.intro__who + p {
-		--flow-space: 2rem;
-	}
-
-	.img {
-		--max: 400px;
-	}
-
-	.intro__img {
-		width: clamp(300px, 70%, var(--max));	
-	}
-
 	.intro {
-		row-gap: 2rem
+		padding-block: var(--space-3xl);
+	}
+
+	.intro__main {
+		font-size-adjust: 0.6;
+		line-height: 1.2;
+	}
+	
+	.intro__desc {
+		font-size: var(--size-step-2);
+		text-wrap: pretty;
+	}
+
+	.caption__title {
+		font-size: var(--size-step-1);
+	}
+
+	.post__list {
+		padding-block: var(--space-l);
+	}
+
+	.post__title {
+		font-weight: 400;
+	}
+
+	.post__title a {
+		text-decoration: none;
+	}
+
+	.post__title:hover a {
+		color: var(--clr-secondary);
+	}
+
+	section footer {
+		font-family: var(--font-display);
+	}
+
+	.content {
+		--switcher-vertical-alignment: center;
+		--gutter: 0;
+	}
+	
+	.content > * {
+		padding-block: var(--space-xl);
+	}
+
+	.content section {
+		border-inline-end: var(--stroke);
+	}
+	
+	.cta {
+		--gutter: var(--space-s);
+		
+		font-size: var(--size-step-1);
+		padding: var(--space-l);
+		background-color: var(--clr-light-glare);
+		width: fit-content;
 	}
 </style>

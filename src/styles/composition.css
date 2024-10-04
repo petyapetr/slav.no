@@ -1,0 +1,50 @@
+.wrapper {
+	--gutter: var(--space-s);
+
+	margin-inline: auto;
+	max-width: 100rem;
+	padding-inline: var(--gutter);
+}
+
+.switcher {
+	--switcher-min-width: 40ch;
+	--switcher-vertical-alignment: start;
+
+	align-items: var(--switcher-vertical-alignment);
+	display: grid;
+	gap: var(--gutter, 1rem);
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--switcher-min-width)), 1fr));
+}
+
+.flow > * + * {
+	margin-top: 1em;
+  margin-block-start: var(--flow-space, 1em);
+}
+
+.flow {
+	--flow-space: 1em;
+}
+
+h1, h2, h3, blockquote {
+  --flow-space: 1.5em;
+}
+
+h1, h2, h3 + * {
+	--flow-space: 0.5em;
+}
+
+.repel {
+	--repel-aligment: center;
+	
+	align-items: var(--repel-alignment);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+  gap: var(--gutter);
+}
+
+.auto-columns {
+	display: grid;
+	gap: var(--space-s);
+	grid-auto-flow: column;
+}
