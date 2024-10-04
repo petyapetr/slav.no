@@ -51,13 +51,15 @@ const posts = data.map((post) => {
 					Latest writing
 				</h2>
 			</header>
-			<ul class="post__list flow" role="list">
+			<ul class="posts__list flow" role="list">
 				{posts.map(post => (
 					<li class="post">
-						<h3 class="post__title">
-							<a class="post__link" href={post.href}>{post.title}</a>
-						</h3>
-						<p class="post__date text-narrow">{post.date}</p>
+						<a href={post.href}>
+							<h3 class="post__title">
+								{post.title}
+							</h3>
+							<p class="post__date text-narrow">{post.date}</p>
+						</a>
 					</li>
 				))}
 			</ul>
@@ -93,19 +95,22 @@ const posts = data.map((post) => {
 		font-size: var(--size-step-1);
 	}
 
-	.post__list {
+	.posts__list {
 		padding-block: var(--space-l);
+	}
+	.post {
+		width: fit-content;
 	}
 
 	.post__title {
 		font-weight: 400;
 	}
-
-	.post__title a {
+	
+	.post a {
 		text-decoration: none;
 	}
 
-	.post__title:hover a {
+	.post a:hover .post__title {
 		color: var(--clr-secondary);
 	}
 
