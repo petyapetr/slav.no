@@ -12,11 +12,6 @@
 	--gutter: var(--space-xl)
 }
 
-
-.main > * + *, .footer {
-	border-block-start: var(--stroke);
-}
-
-.header {
+.main > *, .header {
 	border-block-end: var(--stroke);
 }

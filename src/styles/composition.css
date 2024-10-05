@@ -7,7 +7,7 @@
 }
 
 .switcher {
-	--switcher-min-width: 40ch;
+	--switcher-min-width: 30rem;
 	--switcher-vertical-alignment: start;
 
 	align-items: var(--switcher-vertical-alignment);
@@ -34,7 +34,7 @@ h1, h2, h3 + * {
 }
 
 .repel {
-	--repel-aligment: center;
+	--repel-alignment: center;
 	
 	align-items: var(--repel-alignment);
 	display: flex;

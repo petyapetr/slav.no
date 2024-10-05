@@ -51,14 +51,14 @@ const posts = data.map((post) => {
 					Latest writing
 				</h2>
 			</header>
-			<ul class="posts__list flow" role="list">
+			<ul class="posts__list | flow" role="list">
 				{posts.map(post => (
 					<li class="post">
 						<a href={post.href}>
 							<h3 class="post__title">
 								{post.title}
 							</h3>
-							<p class="post__date text-narrow">{post.date}</p>
+							<p class="post__date | text-narrow">{post.date}</p>
 						</a>
 					</li>
 				))}
@@ -67,7 +67,7 @@ const posts = data.map((post) => {
 				<a href="/writing">All writting →</a>
 			</footer>
 		</section>
-		<div class="inner-wrapper">
+		<div class="content__block | inner-wrapper">
 			<div class="cta | switcher">
 				<h2>Would like to work with me?</h2>
 				<a href="mailto:me@slav.no" title="Email Me" role="button">Email Me</a>
@@ -117,18 +117,34 @@ const posts = data.map((post) => {
 	section footer {
 		font-family: var(--font-display);
 	}
-
-	.content {
-		--switcher-vertical-alignment: center;
-		--gutter: 0;
-	}
 	
 	.content > * {
 		padding-block: var(--space-xl);
+	}	
+	
+	.content {
+		--switcher-vertical-alignment: stretch;	
 	}
 
-	.content section {
-		border-inline-end: var(--stroke);
+	.content.switcher {
+		--gutter: 0;
+	}
+
+	@media (max-width: 67.5rem) {		
+		.content > * + * {
+			border-block-start: var(--stroke);
+		}
+	}
+	
+	@media (min-width: 67.5rem) {
+		.content > * + * {
+			border-inline-start: var(--stroke);
+		}
+
+		.content__block {
+			display: grid;
+			place-content: center;
+		}
 	}
 	
 	.cta {
